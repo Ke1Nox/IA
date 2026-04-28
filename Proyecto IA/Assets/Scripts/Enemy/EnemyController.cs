@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,14 +79,18 @@ public class EnemyController : MonoBehaviour
 
     bool InAttackRange()
     {
-        return Vector3.Distance(target.position, transform.position) <= _entityAttack.GetAttackRange;
+        float dist = Vector3.Distance(target.position, transform.position);
+        float range = _entityAttack.GetAttackRange;
+
+        
+
+        return dist <= range;
     }
 
     private void Update()
     {
-        _root.Execute();   
-        _fsm.OnUpdate();
-     
+        _fsm.OnUpdate();  
+        _root.Execute();  
     }
 
     private void FixedUpdate()

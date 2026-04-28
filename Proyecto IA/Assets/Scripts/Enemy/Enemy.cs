@@ -16,9 +16,7 @@ public class Enemy : Entity, IAttack
         base.Awake();
         _attackCooldown = new Cooldown(attackCooldownTime);
     }
-
-    public float attackRange;
-    public float GetAttackRange => attackRange;
+    public float GetAttackRange => _attackOfSight.range;
 
     public Action OnAttack { get => _onAttack; set => _onAttack = value; }
     public Cooldown Cooldown { get => _attackCooldown; }
@@ -38,6 +36,6 @@ public class Enemy : Entity, IAttack
             break;
         }
         _attackCooldown.ResetCooldown();
-        _onAttack();
+        _onAttack?.Invoke();
     }
 }
